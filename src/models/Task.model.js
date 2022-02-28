@@ -1,7 +1,7 @@
 import Sequelize from 'sequelize';
 import { sequelize } from '../database/database';
 
-// Deminicion del modelo de mi tabla Tasks
+// Definicion del modelo de mi tabla Tasks
 const Task = sequelize.define(
 	'tasks',
 	{

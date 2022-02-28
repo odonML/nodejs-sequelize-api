@@ -1,4 +1,5 @@
 import Project from '../models/Project.model';
+import Task from '../models/Task.model';
 
 const createProject = async (req, res) => {
 	const { name, priority, description, deliverydate } = req.body;
@@ -47,9 +48,17 @@ const getOneProject = async (req, res) => {
 		const data = await Project.findOne({
 			where: { id },
 		});
+		const tasks = await Task.findAll({
+			where: { projectId: id },
+		});
+
+		console.log(tasks, data);
 		res.json({
 			ok: true,
-			data,
+			data: {
+				data,
+				tasks: tasks,
+			},
 		});
 	} catch (error) {
 		res.json({
